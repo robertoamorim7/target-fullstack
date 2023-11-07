@@ -1,0 +1,29 @@
+<mat-card class="container">
+  <mat-card-title class="title">Criar novo lançamento</mat-card-title>
+
+  <div [formGroup]="form" *ngIf="!isLoading">
+    <mat-form-field>
+      <mat-label>Descrição</mat-label>
+      <input matInput type="text" (keypress)="keyPressAlphaNumeric($event)" formControlName="descricao">
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <mat-label>Valor</mat-label>
+      <input matInput type="text" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative: true }" formControlName="valor">
+    </mat-form-field>
+    <br />
+    <mat-form-field *ngIf="!isCreating">
+      <mat-label>Data</mat-label>
+      <input matInput type="date" formControlName="data">
+    </mat-form-field>
+    <br />
+    <button mat-raised-button (click)="create()" color="primary" *ngIf="isCreating" [disabled]="!form.valid">
+      Criar Lançamento
+    </button>
+    <button mat-raised-button (click)="update()" color="primary" *ngIf="!isCreating" [disabled]="!form.valid">
+      Atualizar Lançamento
+    </button>
+
+  </div>
+</mat-card>
+    

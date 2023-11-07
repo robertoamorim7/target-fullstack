@@ -1,0 +1,63 @@
+<div [formGroup]="form" class="filter-container">
+
+  <h2>Filtros: </h2>
+  <div class="date-container">
+    <mat-form-field class="date-filter">
+      <mat-label>De: </mat-label>
+      <input matInput type="date" formControlName="initialDate">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Até: </mat-label>
+      <input matInput type="date" formControlName="endDate">
+    </mat-form-field>
+  </div>
+
+  <div class="checkbox-container">
+    <div class="checkbox-container-inside">
+      <mat-checkbox formControlName="includeValid">Válidos</mat-checkbox>
+      <mat-checkbox formControlName="includeAvulso">Avulsos</mat-checkbox>
+    </div>
+
+    <div class="checkbox-container-inside">
+      <mat-checkbox formControlName="includeNotAvulso">Não Avulsos</mat-checkbox>
+      <mat-checkbox formControlName="includeCancelled">Cancelados</mat-checkbox>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="lancamentos.length === 0 && !isLoading">Não existem registros para o filtro aplicado.</div>
+
+<div *ngIf="!isLoading">
+  <div *ngFor="let lancamento of lancamentos" class="container">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title class="title">{{ lancamento.descricao }}</mat-card-title>
+        <mat-card-subtitle>Valor: {{ lancamento.valor | currency:'BRL':'symbol' }}</mat-card-subtitle>
+        <mat-card-subtitle>Status: {{ lancamento.status == 0 ? "Válido" : "Cancelado" }}</mat-card-subtitle>
+        <mat-card-subtitle>Extrato Avulso: {{ lancamento.avulso ? "Sim" : "Não" }}</mat-card-subtitle>
+        <mat-card-subtitle>Data da Transação: {{ lancamento.data | date:'dd/MM/yyyy' }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-actions align="end">
+        <button mat-raised-button color="primary" disabled="{{ !(lancamento.status == 0 && lancamento.avulso == true) }}">
+          <a routerLink="./lancamento-form/{{ lancamento.id }}">
+            Editar
+            <i class="material-icons">edit</i>
+          </a>
+        </button>
+        <button mat-raised-button color="primary" (click)="delete(lancamento.id)" disabled="{{ !(lancamento.status == 0 && lancamento.avulso == true) }}">
+          <a>
+            Cancelar
+            <i class="material-icons" style="color: #e35e6b">delete</i>
+          </a>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+
+
+<h1 *ngIf="lancamentos.length > 0">Valor total: {{ totalValue | currency:'BRL':'symbol' }}</h1>
+
+
+

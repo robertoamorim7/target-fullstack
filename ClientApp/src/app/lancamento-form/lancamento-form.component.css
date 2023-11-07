@@ -1,0 +1,9 @@
+.container {
+  width: 250px;
+  height: 350px;
+}
+
+.title {
+  color: #c9c9c9;
+  margin-bottom: 8px;
+}

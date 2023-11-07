@@ -1,0 +1,75 @@
+.container {
+  padding-bottom: 8px;
+}
+
+.game-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 200px;
+  margin: 16px;
+  padding-bottom: 0px;
+}
+
+.img-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+img {
+  width: 90%;
+  height: auto;
+}
+
+a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+}
+
+button {
+  margin-right: 16px;
+}
+
+i {
+  color: yellow;
+  margin-left: 4px;
+}
+
+.checkbox {
+  background-color: #424242;
+  color: black;
+  height: 40px
+}
+
+.filter-container {
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    height: 100px;
+    flex-flow: 1
+}
+
+.date-filter {
+    margin: 0 10px;
+}
+
+.checkbox-container {
+  background-color: #424242;
+  display: flex;
+  border-radius: 4px;
+  height: 80px;
+  margin-left: 10px;
+  width: 240px
+}
+
+.checkbox-container-inside {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  color: #c9c9c9;
+}
